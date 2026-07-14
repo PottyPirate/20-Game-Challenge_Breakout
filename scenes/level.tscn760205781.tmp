@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://pnewxw0445l0"]
+
+[ext_resource type="Script" uid="uid://c5g8xlmx8stxx" path="res://paddle.gd" id="1_w7c3h"]
+[ext_resource type="Script" uid="uid://drxii571joea7" path="res://ball.gd" id="2_mx8sn"]
+[ext_resource type="Texture2D" uid="uid://bcps3dmp3w1a6" path="res://ball.png" id="2_w8frs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rd3vj"]
+size = Vector2(88, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mx8sn"]
+radius = 8.062258
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rd3vj"]
+
+[node name="Level" type="Node2D" unique_id=1568939155]
+
+[node name="Paddle" type="CharacterBody2D" parent="." unique_id=993485388]
+position = Vector2(593, 612)
+script = ExtResource("1_w7c3h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle" unique_id=177257180]
+shape = SubResource("RectangleShape2D_rd3vj")
+
+[node name="ColorRect" type="ColorRect" parent="Paddle" unique_id=1662930400]
+offset_left = -44.0
+offset_top = -7.0
+offset_right = 44.0
+offset_bottom = 7.0
+
+[node name="Ball" type="CharacterBody2D" parent="." unique_id=1053679797]
+position = Vector2(491, 103)
+script = ExtResource("2_mx8sn")
+speed = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=479237687]
+position = Vector2(0.47362518, -0.55973816)
+texture = ExtResource("2_w8frs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=1280301325]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_mx8sn")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1634254857]
+
+[node name="TopWall" type="CollisionShape2D" parent="Walls" unique_id=1714777487]
+position = Vector2(444, -2)
+shape = SubResource("WorldBoundaryShape2D_rd3vj")
+
+[node name="LeftWall" type="CollisionShape2D" parent="Walls" unique_id=2086442855]
+position = Vector2(-2, 299)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_rd3vj")
+
+[node name="RightWall" type="CollisionShape2D" parent="Walls" unique_id=843170527]
+position = Vector2(1154, 296)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_rd3vj")
